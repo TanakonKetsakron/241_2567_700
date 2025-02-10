@@ -33,7 +33,8 @@ app.put('/user/:id', (req, res) => {
   let updateUser = req.body;
 
   //ค้นหา users ที่ต้องการแก้ไข
-  let selectIndex = users.findIndex(user => user.id == id)
+  let.selectedIndex = users.findIndex(user => user.id == id)
+
  
   //แก้ไขข้อมูล users ที                                หรือ ||  
   if(updateUser.firstname){
@@ -62,10 +63,10 @@ app.delete('/user/:id', (req, res) => {
   //path: /user/:id ใช้สำหรับลบข้อมูล user ที่มี id ตามที่ระบุ
   let id = req.params.id;
   //หา index ของ user ที่ต้องการลบ
-  let.selectedIndex = users.findIndex(user => user.id == id)
+  let selectedIndex = users.findIndex(user => user.id == id)
 
   //ลบs
-  users.splice(selectedIndex, 1)
+  delete users.splice(selectedIndex, 1)
   res.json({
     message: 'Delete user successfully',
     indexDeleted: selectedIndex
