@@ -1,0 +1,3 @@
+npx nodemon node index.js
+npm i body-parser   
+npm i nodemon          

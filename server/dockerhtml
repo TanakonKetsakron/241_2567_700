@@ -1,0 +1,9 @@
+//pwd // print working directory
+cd // change directory 
+cat // print file content
+cd .. //go back one directory
+exit // exit container
+docker stop <container_id> // stop container
+
+docker system prune // remove all stopped containers, networks, images, and volumes
+docker-compose down // stop and remove containers, networks, images, and volumes//
