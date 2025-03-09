@@ -4,7 +4,8 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 const app = express();
 
-const port = 8000;
+
+ const port = 8000;
  app.use(bodyParser.json());
  app.use(cors());
 
@@ -20,6 +21,30 @@ const initMySQL = async () => {
   
   })
 }
+
+const validateData = (userData) => {
+  let errors = [];
+  if (!userData.firstName === '') {
+      errors.push('กรุณากรอกชื่อ');
+  }
+  if (!userData.lastName === '') {
+      errors.push('กรุณากรอกนามสกุล');
+  }
+  if (!userData.age === '') {
+      errors.push('กรุณากรอกอายุ');
+  }
+  if (!userData.gender === '') {
+      errors.push('กรุณาเลือกเพศ');
+  }
+  if (!userData.interests === '') {
+      errors.push('กรุณาเลือกสิ่งที่สนใจ');
+  }
+  if (!userData.description === '') {
+      errors.push('กรุณากรอกคำอธิบาย');
+ return errors;
+}
+}
+
 app.get('/users',async (req, res) => {
   const results = await conn.query('SELECT * FROM users')
   res.json(results[0])
@@ -29,6 +54,15 @@ app.post('/users',async (req, res) => {
 
 try{
   let user = req.body;
+  const errors = ValidateData(user)
+  if(errors.length > 0){
+    throw { 
+      message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+      errors: errors
+    }
+  }
+
+
   const results= await conn.query('INSERT INTO users SET ?', user)
   res.json({
     message: 'Create user successfully',
