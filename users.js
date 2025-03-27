@@ -34,7 +34,6 @@ const loadData = async() => {
     //ลิ้งไปที่ index.html พร้อม id  ปุ่ม Edit ใน a คลิกแล้วจะไปหน้า index.html
     /*ขึ้นบรรทัดใหม่ ใช้ br*/
     //<button class='extra1'> Pass 1</button> สร้างปุ่ม Pass 1
-    <button class='extra2'> Notpass 2</button>
     for(let i = 0; i < response.data.length; i++) {
         let users = response.data[i]
         htmlData += `
